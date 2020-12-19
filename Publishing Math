@@ -1,1 +1,15 @@
+#include <iostream>
+#include <ros/ros.h>
 
+ros::Publisher Regnestykke;
+ros::Publisher Resultat;
+
+int main(int argc, char *argv)
+{
+  ros::init(argc, argv, "Math");
+  ros::NodeHandle n;
+  Regnestykke = n.advertise(Sti til filen; hvor meget skal kunne huskes);
+  Resultat = n.advertise<
+
+  return 0;
+}
