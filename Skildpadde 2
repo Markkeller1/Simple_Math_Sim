@@ -1,1 +1,14 @@
+#include <ros/ros.h>
+
+ros::Subscriber sub_Regnestykke;
+ros::Subscriber sub_Resultat;
+
+int main(int argc, char *argv)
+{
+  ros::init(argc, argv, "Math");
+  ros::NodeHandle n;
+  sub_Resultat = n.subscribe(Sti til filen; hvor meget skal kunne huskes);
+
+  return 0;
+}
 
