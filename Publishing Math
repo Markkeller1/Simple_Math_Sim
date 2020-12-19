@@ -1,8 +1,8 @@
 #include <iostream>
 #include <ros/ros.h>
 
-ros::Publisher Regnestykke;
-ros::Publisher Resultat;
+ros::Publisher pub_Regnestykke;
+ros::Publisher pub_Resultat;
 
 int main(int argc, char *argv)
 {
