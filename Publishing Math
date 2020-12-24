@@ -4,12 +4,58 @@
 ros::Publisher pub_Regnestykke;
 ros::Publisher pub_Resultat;
 
+//Variabler
+int v1, v2, op1, mat; 
+bool a = true;
+
 int main(int argc, char *argv)
 {
   ros::init(argc, argv, "Math");
   ros::NodeHandle n;
   Regnestykke = n.advertise(Sti til filen; hvor meget skal kunne huskes);
   Resultat = n.advertise<
+  
+  while (a == true)
+    {
+        std::cout << "Indtast første værdi her: ";
+        std::cin >> v1;
+        std::cout << "\nVælg operation; + = 1   - = 2   * = 3   / = 4: ";
+        std::cin >> op1;
+        //std::opera;
+        std::cout << "\nIndtast anden værdi her: ";
+        std::cin >> v2;
+
+        if (op1 == 1)
+        {
+            std::cout << v1 << " + " << v2;
+            mat = v1 + v2;
+            std::cout << mat << std::endl;
+        }
+
+        else if (op1 == 2)
+        {
+            std::cout << v1 << " - " << v2;
+            mat = v1 - v2;
+            std::cout << mat << std::endl;
+        }
+
+        else if (op1 == 3)
+        {
+            std::cout << v1 << " * " << v2;
+            mat = v1 * v2;
+            std::cout << mat << std::endl;
+        }
+
+        else if (op1 == 4)
+        {
+            std::cout << v1 << " / " << v2;
+            mat = v1 / v2;
+            std::cout << mat << std::endl;
+        }
+
+        std::cout << "Tast 0 for at afslutte alt andet for at fortsætte: ";
+        std::cin >> a;
+    }
 
   return 0;
 }
