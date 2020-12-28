@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 
         if (op1 == 1)
         {
-            std::cout << v1 << " + " << v2;
+            std::cout << v1 << " + " << v2 << " = ";
             mat = v1 + v2;
             std::cout << mat << std::endl;
             ss << v1 << " + " << v2 << std::endl;
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
         else if (op1 == 2)
         {
-            std::cout << v1 << " - " << v2;
+            std::cout << v1 << " - " << v2 << " = ";
             mat = v1 - v2;
             std::cout << mat << std::endl;
             ss << v1 << " - " << v2 << std::endl;
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
         else if (op1 == 3)
         {
-            std::cout << v1 << " * " << v2;
+            std::cout << v1 << " * " << v2 << " = ";
             mat = v1 * v2;
             std::cout << mat << std::endl;
             ss << v1 << " * " << v2 << std::endl;
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 
         else if (op1 == 4)
         {
-            std::cout << v1 << " / " << v2;
+            std::cout << v1 << " / " << v2 << " = ";
             mat = v1 / v2;
             std::cout << mat << std::endl;
             ss << v1 << " / " << v2 << std::endl;
