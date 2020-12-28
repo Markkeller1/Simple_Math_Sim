@@ -9,8 +9,12 @@ ros::Publisher pub_Regnestykke;
 ros::Publisher pub_Resultat;
 
 //Variabler
-int v1, v2, op1, mat; 
-bool a = true;
+int v1, v2, op1, mat, a = 1;
+//bool a = true;
+
+//String
+std_msgs::String msg;
+std::stringstream ss;
 
 //main function
 int main(int argc, char **argv)
@@ -19,13 +23,9 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     pub_Regnestykke = n.advertise<std_msgs::String>("Regnestykke", 1000);
     pub_Resultat = n.advertise<std_msgs::String>("Resultat", 1000);
-    ros::Rate loop_rate(10);
 
-    while (a == true && ros::ok())
+    while (a != 0 && ros::ok())
     {
-        std_msgs::String msg;
-        std::stringstream ss;
-        
         std::cout << "Indtast første værdi her: ";
         std::cin >> v1;
         std::cout << "\nVælg operation; + = 1   - = 2   * = 3   / = 4: ";
@@ -71,8 +71,6 @@ int main(int argc, char **argv)
         pub_Resultat.publish(msg);
 
         ros::spinOnce();
-
-        loop_rate.sleep();
 
         std::cout << "Tast 0 for at afslutte alt andet for at fortsætte: ";
         std::cout << ss.str() << std::endl;
