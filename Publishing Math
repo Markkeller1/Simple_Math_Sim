@@ -14,7 +14,7 @@ int v1, v2, op1, mat, a = 1;
 
 //String
 std_msgs::String msg;
-std::stringstream ss;
+std::stringstream ss1, ss2;
 
 //main function
 int main(int argc, char **argv)
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
             std::cout << v1 << " + " << v2 << " = ";
             mat = v1 + v2;
             std::cout << mat << std::endl;
-            ss << v1 << " + " << v2 << std::endl;
+            ss1 << v1 << " + " << v2 << std::endl;
         }
 
         else if (op1 == 2)
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
             std::cout << v1 << " - " << v2 << " = ";
             mat = v1 - v2;
             std::cout << mat << std::endl;
-            ss << v1 << " - " << v2 << std::endl;
+            ss1 << v1 << " - " << v2 << std::endl;
         }
 
         else if (op1 == 3)
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
             std::cout << v1 << " * " << v2 << " = ";
             mat = v1 * v2;
             std::cout << mat << std::endl;
-            ss << v1 << " * " << v2 << std::endl;
+            ss1 << v1 << " * " << v2 << std::endl;
         }
 
         else if (op1 == 4)
@@ -62,18 +62,23 @@ int main(int argc, char **argv)
             std::cout << v1 << " / " << v2 << " = ";
             mat = v1 / v2;
             std::cout << mat << std::endl;
-            ss << v1 << " / " << v2 << std::endl;
+            ss1 << v1 << " / " << v2 << std::endl;
         }
 
-        msg.data = ss.str();
+        ss2 << mat << std::endl;
+
+        msg.data = ss1.str();
         ROS_INFO("%s", msg.data.c_str());
         pub_Regnestykke.publish(msg);
+        
+        msg.data = ss2.str();
+        ROS_INFO("%s", msg.data.c_str());
         pub_Resultat.publish(msg);
 
         ros::spinOnce();
 
         std::cout << "Tast 0 for at afslutte alt andet for at fortsætte: ";
-        std::cout << ss.str() << std::endl;
+        std::cout << ss1.str() << std::endl;
         std::cin >> a;
     }
 
