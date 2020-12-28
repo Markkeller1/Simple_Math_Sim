@@ -1,6 +1,10 @@
 #include <iostream>
 #include <ros/ros.h>
+#include <std_msgs/String.h>
+//#include <string>
+//#include <sstream>
 
+//Publisher
 ros::Publisher pub_Regnestykke;
 ros::Publisher pub_Resultat;
 
@@ -8,20 +12,24 @@ ros::Publisher pub_Resultat;
 int v1, v2, op1, mat; 
 bool a = true;
 
-int main(int argc, char *argv)
+//main function
+int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "Math");
-  ros::NodeHandle n;
-  Regnestykke = n.advertise(Sti til filen; hvor meget skal kunne huskes);
-  Resultat = n.advertise<
-  
-  while (a == true)
+    ros::init (argc, argv, "Math");
+    ros::NodeHandle n;
+    pub_Regnestykke = n.advertise<std_msgs::String>("Regnestykke", 1000);
+    pub_Resultat = n.advertise<std_msgs::String>("Resultat", 1000);
+    ros::Rate loop_rate(10);
+
+    while (a == true && ros::ok())
     {
+        std_msgs::String msg;
+        std::stringstream ss;
+        
         std::cout << "Indtast første værdi her: ";
         std::cin >> v1;
         std::cout << "\nVælg operation; + = 1   - = 2   * = 3   / = 4: ";
         std::cin >> op1;
-        //std::opera;
         std::cout << "\nIndtast anden værdi her: ";
         std::cin >> v2;
 
@@ -30,6 +38,7 @@ int main(int argc, char *argv)
             std::cout << v1 << " + " << v2;
             mat = v1 + v2;
             std::cout << mat << std::endl;
+            ss << v1 << " + " << v2 << std::endl;
         }
 
         else if (op1 == 2)
@@ -37,6 +46,7 @@ int main(int argc, char *argv)
             std::cout << v1 << " - " << v2;
             mat = v1 - v2;
             std::cout << mat << std::endl;
+            ss << v1 << " - " << v2 << std::endl;
         }
 
         else if (op1 == 3)
@@ -44,6 +54,7 @@ int main(int argc, char *argv)
             std::cout << v1 << " * " << v2;
             mat = v1 * v2;
             std::cout << mat << std::endl;
+            ss << v1 << " * " << v2 << std::endl;
         }
 
         else if (op1 == 4)
@@ -51,11 +62,22 @@ int main(int argc, char *argv)
             std::cout << v1 << " / " << v2;
             mat = v1 / v2;
             std::cout << mat << std::endl;
+            ss << v1 << " / " << v2 << std::endl;
         }
 
+        msg.data = ss.str();
+        ROS_INFO("%s", msg.data.c_str());
+        pub_Regnestykke.publish(msg);
+        pub_Resultat.publish(msg);
+
+        ros::spinOnce();
+
+        loop_rate.sleep();
+
         std::cout << "Tast 0 for at afslutte alt andet for at fortsætte: ";
+        std::cout << ss.str() << std::endl;
         std::cin >> a;
     }
 
-  return 0;
+    return 0;
 }
